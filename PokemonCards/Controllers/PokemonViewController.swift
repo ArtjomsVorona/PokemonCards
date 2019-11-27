@@ -61,7 +61,7 @@ extension PokemonViewController: UITableViewDataSource {
         
         cell.textLabel?.text = pokemon.name
         
-        let detailText = "Id: \(pokemon.id)" + "\nSupertype: \(pokemon.supertype)" + "\nSubtype: \(pokemon.subtype)"
+        let detailText = "Id: \(pokemon.id)" + "\nSupertype: \(pokemon.supertype)" + "\nSubtype: \(pokemon.subtype)" + "\nTypes: \(pokemon.types)"
         cell.detailTextLabel?.text = detailText
         cell.detailTextLabel?.numberOfLines = 0
         

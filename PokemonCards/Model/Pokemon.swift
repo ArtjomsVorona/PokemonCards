@@ -13,6 +13,7 @@ struct Pokemon: Decodable {
     let id: String
     let name: String
     var imageUrl: String?
+    let types: [String]?
     let supertype: String
     let subtype: String
     let number: String
@@ -21,6 +22,7 @@ struct Pokemon: Decodable {
         case id
         case name
         case imageUrl
+        case types
         case supertype
         case subtype
         case number
