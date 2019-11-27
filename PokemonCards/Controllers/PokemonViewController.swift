@@ -6,6 +6,7 @@
 //  Copyright © 2019 Artjoms Vorona. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class PokemonViewController: UIViewController {
@@ -21,6 +22,11 @@ class PokemonViewController: UIViewController {
         getPokemonData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
     func getPokemonData() {
         let url = URL(string: "https://api.pokemontcg.io/v1/cards")!
         
@@ -33,6 +39,9 @@ class PokemonViewController: UIViewController {
                 do {
                     let cardData = try JSONDecoder().decode(Cards.self, from: data)
                     self.pokemons = cardData.cards
+                    for pokemon in self.pokemons {
+                        Favorite.cards[pokemon.id] = false
+                    }
                 } catch {
                     print("Failed to encode pokemon data, error: ", error.localizedDescription)
                 }
@@ -49,23 +58,48 @@ class PokemonViewController: UIViewController {
     
 }//end class
 
-extension PokemonViewController: UITableViewDataSource {
+extension PokemonViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemons.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as? PokemonTableViewCell else { return UITableViewCell()}
         
         let pokemon = pokemons[indexPath.row]
         
-        cell.textLabel?.text = pokemon.name
+        cell.nameLabel?.text = pokemon.name
         
-        let detailText = "Id: \(pokemon.id)" + "\nSupertype: \(pokemon.supertype)" + "\nSubtype: \(pokemon.subtype)" + "\nTypes: \(pokemon.types)"
-        cell.detailTextLabel?.text = detailText
-        cell.detailTextLabel?.numberOfLines = 0
+        //setting details of the card
+        var detailText = "Id: \(pokemon.id)" + "\nSupertype: \(pokemon.supertype)" + "\nSubtype: \(pokemon.subtype)"
+        if let types = pokemon.types {
+            detailText += "\nTypes: \(types.joined(separator: ","))"
+        }
+        cell.detailsLabel?.text = detailText
+        cell.detailsLabel?.numberOfLines = 0
         
+        //setting card HP
+        var hpText = ""
+        if let hp = pokemon.hp {
+            hpText = "\(hp) HP"
+        }
+        cell.additionalDetailsLabel.text = hpText
+        
+        //setting if card is Favorite
+        if Favorite.cards[pokemon.id] == true {
+            print("found key \(pokemon.id)")
+            cell.favoriteImage.image = UIImage(systemName: "star.fill")
+            cell.favoriteImage.alpha = 1
+        } else {
+            cell.favoriteImage.image = UIImage(systemName: "star")
+            cell.favoriteImage.alpha = 0.5
+        }
+
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,6 +108,10 @@ extension PokemonViewController: UITableViewDataSource {
                 detailVC.pokemon = pokemons[row]
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
     
 }//end extension

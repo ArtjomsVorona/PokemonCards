@@ -16,6 +16,7 @@ struct Pokemon: Decodable {
     let types: [String]?
     let supertype: String
     let subtype: String
+    let hp: String?
     let number: String
     
     enum CodingKeys: String, CodingKey {
@@ -25,6 +26,7 @@ struct Pokemon: Decodable {
         case types
         case supertype
         case subtype
+        case hp
         case number
     }
 }

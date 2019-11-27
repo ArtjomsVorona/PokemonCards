@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		962E6FF7238E92CF00C969D4 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962E6FF6238E92CF00C969D4 /* PokemonTableViewCell.swift */; };
+		962E6FFC238EBC0A00C969D4 /* FavoriteCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 962E6FFA238EBC0A00C969D4 /* FavoriteCards.xcdatamodeld */; };
+		962E6FFE238EDA1D00C969D4 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962E6FFD238EDA1D00C969D4 /* Favorite.swift */; };
 		AC006F78238D69A300B36677 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC006F77238D69A300B36677 /* AppDelegate.swift */; };
 		AC006F7A238D69A300B36677 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC006F79238D69A300B36677 /* SceneDelegate.swift */; };
 		AC006F7C238D69A300B36677 /* PokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC006F7B238D69A300B36677 /* PokemonViewController.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		962E6FF6238E92CF00C969D4 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
+		962E6FFB238EBC0A00C969D4 /* FavoriteCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteCards.xcdatamodel; sourceTree = "<group>"; };
+		962E6FFD238EDA1D00C969D4 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		AC006F74238D69A300B36677 /* PokemonCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC006F77238D69A300B36677 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC006F79238D69A300B36677 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +77,7 @@
 				AC006F8C238D69CA00B36677 /* Views */,
 				AC006F80238D69A900B36677 /* Assets.xcassets */,
 				AC006F85238D69A900B36677 /* Info.plist */,
+				962E6FFA238EBC0A00C969D4 /* FavoriteCards.xcdatamodeld */,
 			);
 			path = PokemonCards;
 			sourceTree = "<group>";
@@ -98,6 +105,7 @@
 			children = (
 				AC006F7B238D69A300B36677 /* PokemonViewController.swift */,
 				AC006F8E238D6BEA00B36677 /* PokemonDetailViewController.swift */,
+				962E6FF6238E92CF00C969D4 /* PokemonTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -115,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				AC006F96238D771600B36677 /* Pokemon.swift */,
+				962E6FFD238EDA1D00C969D4 /* Favorite.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,9 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				962E6FFC238EBC0A00C969D4 /* FavoriteCards.xcdatamodeld in Sources */,
 				AC006F97238D771600B36677 /* Pokemon.swift in Sources */,
+				962E6FF7238E92CF00C969D4 /* PokemonTableViewCell.swift in Sources */,
 				AC006F92238D6DF900B36677 /* NetworkController.swift in Sources */,
 				AC006F7C238D69A300B36677 /* PokemonViewController.swift in Sources */,
+				962E6FFE238EDA1D00C969D4 /* Favorite.swift in Sources */,
 				AC006F8F238D6BEA00B36677 /* PokemonDetailViewController.swift in Sources */,
 				AC006F78238D69A300B36677 /* AppDelegate.swift in Sources */,
 				AC006F7A238D69A300B36677 /* SceneDelegate.swift in Sources */,
@@ -394,6 +406,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		962E6FFA238EBC0A00C969D4 /* FavoriteCards.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				962E6FFB238EBC0A00C969D4 /* FavoriteCards.xcdatamodel */,
+			);
+			currentVersion = 962E6FFB238EBC0A00C969D4 /* FavoriteCards.xcdatamodel */;
+			path = FavoriteCards.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AC006F6C238D69A300B36677 /* Project object */;
 }

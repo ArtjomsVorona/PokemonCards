@@ -13,6 +13,8 @@ class PokemonDetailViewController: UIViewController {
     var pokemon: Pokemon?
     
     @IBOutlet weak var pokemonCardImage: UIImageView!
+    @IBOutlet weak var markAsFavoriteButton: UIButton!
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -23,9 +25,27 @@ class PokemonDetailViewController: UIViewController {
             ImageController.getImage(for: pokemon.imageUrl ?? "") { (image) in
                 self.pokemonCardImage.image = image
             }
+            
+            if Favorite.cards[pokemon.id] == false {
+                markAsFavoriteButton.setTitle("Mark as favorite", for: .normal)
+            } else {
+                markAsFavoriteButton.setTitle("Unmark as favorite", for: .normal)
+            }
+            
         } else {
             print("Pokemon image is nil")
         }
     }//end viewWillApper
+    
+    @IBAction func markAsFavoriteButtonTapped(_ sender: UIButton) {
+        guard let pokemon = pokemon else { return }
+        if Favorite.cards[pokemon.id] == false {
+            Favorite.cards[pokemon.id] = true
+            markAsFavoriteButton.setTitle("Unmark as favorite", for: .normal)
+        } else {
+            Favorite.cards[pokemon.id] = false
+            markAsFavoriteButton.setTitle("Mark as favorite", for: .normal)
+        }
+    }
     
 }//end class
