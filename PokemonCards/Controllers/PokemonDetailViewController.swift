@@ -18,6 +18,8 @@ class PokemonDetailViewController: UIViewController {
         super.viewWillAppear(true)
         
         if let pokemon = pokemon {
+            title = pokemon.name
+            
             ImageController.getImage(for: pokemon.imageUrl ?? "") { (image) in
                 self.pokemonCardImage.image = image
             }

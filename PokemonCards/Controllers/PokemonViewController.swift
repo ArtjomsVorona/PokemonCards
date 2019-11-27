@@ -31,7 +31,7 @@ class PokemonViewController: UIViewController {
             
             if let data = data {
                 do {
-                    let cardData = try JSONDecoder().decode(Card.self, from: data)
+                    let cardData = try JSONDecoder().decode(Cards.self, from: data)
                     self.pokemons = cardData.cards
                 } catch {
                     print("Failed to encode pokemon data, error: ", error.localizedDescription)
@@ -57,7 +57,13 @@ extension PokemonViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath)
         
-        cell.textLabel?.text = pokemons[indexPath.row].name
+        let pokemon = pokemons[indexPath.row]
+        
+        cell.textLabel?.text = pokemon.name
+        
+        let detailText = "Id: \(pokemon.id)" + "\nSupertype: \(pokemon.supertype)" + "\nSubtype: \(pokemon.subtype)"
+        cell.detailTextLabel?.text = detailText
+        cell.detailTextLabel?.numberOfLines = 0
         
         return cell
     }

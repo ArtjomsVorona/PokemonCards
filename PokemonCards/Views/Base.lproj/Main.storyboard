@@ -19,12 +19,28 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonCell" id="LlR-Ix-l8i">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonCell" textLabel="d8K-0u-epr" detailTextLabel="fDF-5v-Gce" style="IBUITableViewCellStyleSubtitle" id="LlR-Ix-l8i">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LlR-Ix-l8i" id="Aei-9o-bo2">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d8K-0u-epr">
+                                                    <rect key="frame" x="20" y="10" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fDF-5v-Gce">
+                                                    <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="ZOo-o7-l9P" kind="show" identifier="PokemonDetailSegueID" id="rd7-Pv-h7l"/>
@@ -64,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ay-dE-uBW">
-                                <rect key="frame" x="0.0" y="88" width="414" height="456"/>
+                                <rect key="frame" x="0.0" y="157" width="414" height="456"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="8kW-u4-ClA"/>
                                     <constraint firstAttribute="height" constant="456" id="F5w-fX-p0e"/>
@@ -73,8 +89,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="0ay-dE-uBW" firstAttribute="top" secondItem="aQ7-ub-Bsq" secondAttribute="top" id="5wL-se-dUx"/>
-                            <constraint firstItem="aQ7-ub-Bsq" firstAttribute="bottom" secondItem="0ay-dE-uBW" secondAttribute="bottom" constant="318" id="B6s-Qv-Rf8"/>
+                            <constraint firstItem="0ay-dE-uBW" firstAttribute="top" secondItem="aQ7-ub-Bsq" secondAttribute="top" constant="69" id="5wL-se-dUx"/>
+                            <constraint firstItem="aQ7-ub-Bsq" firstAttribute="bottom" secondItem="0ay-dE-uBW" secondAttribute="bottom" constant="249" id="B6s-Qv-Rf8"/>
                             <constraint firstItem="0ay-dE-uBW" firstAttribute="leading" secondItem="aQ7-ub-Bsq" secondAttribute="leading" id="W7a-DV-7QF"/>
                             <constraint firstItem="0ay-dE-uBW" firstAttribute="trailing" secondItem="aQ7-ub-Bsq" secondAttribute="trailing" id="tbI-RI-VpC"/>
                         </constraints>
