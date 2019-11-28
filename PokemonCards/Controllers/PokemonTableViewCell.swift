@@ -11,11 +11,8 @@ import UIKit
 class PokemonTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var detailsLabel: UILabel!
-    
     @IBOutlet weak var additionalDetailsLabel: UILabel!
-
     @IBOutlet weak var favoriteImage: UIImageView!
     
 }

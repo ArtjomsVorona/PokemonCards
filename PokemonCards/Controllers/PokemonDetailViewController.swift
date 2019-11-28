@@ -11,6 +11,7 @@ import UIKit
 class PokemonDetailViewController: UIViewController {
     
     var pokemon: Pokemon?
+    var cardImage: UIImage?
     
     @IBOutlet weak var pokemonCardImage: UIImageView!
     @IBOutlet weak var markAsFavoriteButton: UIButton!
@@ -24,6 +25,7 @@ class PokemonDetailViewController: UIViewController {
             
             ImageController.getImage(for: pokemon.imageUrl ?? "") { (image) in
                 self.pokemonCardImage.image = image
+                self.cardImage = image
             }
             
             if Favorite.cards[pokemon.id] == false {
@@ -35,7 +37,16 @@ class PokemonDetailViewController: UIViewController {
         } else {
             print("Pokemon image is nil")
         }
-    }//end viewWillApper
+    }//end viewWillAppear
+    
+    //IBActions
+    @IBAction func shareBarButtonTapped(_ sender: UIBarButtonItem) {
+        guard let image = cardImage else {
+            basicAlert(title: "Error!", message: "Unable to share. Apparently there is no image to share.")
+            return }
+        ShareManager.share(image: image, text: "Here is a Pokemon card I like.", vc: self)
+    }
+    
     
     @IBAction func markAsFavoriteButtonTapped(_ sender: UIButton) {
         guard let pokemon = pokemon else { return }

@@ -163,7 +163,11 @@
                         <viewLayoutGuide key="safeArea" id="aQ7-ub-Bsq"/>
                     </view>
                     <navigationItem key="navigationItem" id="Sle-mR-q5c">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="9mO-EA-HzD"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="9mO-EA-HzD">
+                            <connections>
+                                <action selector="shareBarButtonTapped:" destination="ZOo-o7-l9P" id="F3Y-9M-4Tj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="markAsFavoriteButton" destination="hde-uz-RUy" id="NFo-np-GnK"/>
