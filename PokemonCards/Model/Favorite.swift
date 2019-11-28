@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Favorite {
-    static var cards: [String: Bool] = [:]
-}
+//class Favorite {
+//    static var cards: [String: Bool] = [:]
+//}

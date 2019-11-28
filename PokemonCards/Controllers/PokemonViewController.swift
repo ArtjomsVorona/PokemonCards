@@ -12,6 +12,9 @@ import UIKit
 class PokemonViewController: UIViewController {
     
     var pokemons: [Pokemon] = []
+    var favoriteCards: [String: Bool] = [:]
+    
+    let userDefaults = UserDefaults.standard
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,12 +22,15 @@ class PokemonViewController: UIViewController {
         super.viewDidLoad()
         title = "Pokemon cards"
         
+        loadUserDefaults()
         getPokemonData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tableView.reloadData()
+        
+        loadUserDefaults()
     }
     
     func getPokemonData() {
@@ -39,9 +45,15 @@ class PokemonViewController: UIViewController {
                 do {
                     let cardData = try JSONDecoder().decode(Cards.self, from: data)
                     self.pokemons = cardData.cards
+                    
+                    //setting dict of favorite cards
                     for pokemon in self.pokemons {
-                        Favorite.cards[pokemon.id] = false
+                        if self.favoriteCards[pokemon.id] == nil {
+                            self.favoriteCards[pokemon.id] = false
+                        }
                     }
+                    self.userDefaults.set(self.favoriteCards, forKey: "favoriteCards")
+                    
                 } catch {
                     print("Failed to encode pokemon data, error: ", error.localizedDescription)
                 }
@@ -56,6 +68,12 @@ class PokemonViewController: UIViewController {
         }//end networkController
     }//end getPokemonData
     
+    func loadUserDefaults() {
+        if let dict = userDefaults.dictionary(forKey: "favoriteCards") as? [String: Bool] {
+            favoriteCards = dict
+        }
+    }
+    
 }//end class
 
 extension PokemonViewController: UITableViewDataSource, UITableViewDelegate {
@@ -68,6 +86,7 @@ extension PokemonViewController: UITableViewDataSource, UITableViewDelegate {
         
         let pokemon = pokemons[indexPath.row]
         
+        //setting card name
         cell.nameLabel?.text = pokemon.name
         
         //setting details of the card
@@ -86,15 +105,14 @@ extension PokemonViewController: UITableViewDataSource, UITableViewDelegate {
         cell.additionalDetailsLabel.text = hpText
         
         //setting if card is Favorite
-        if Favorite.cards[pokemon.id] == true {
-            print("found key \(pokemon.id)")
+        if favoriteCards[pokemon.id] == true {
             cell.favoriteImage.image = UIImage(systemName: "star.fill")
             cell.favoriteImage.alpha = 1
         } else {
             cell.favoriteImage.image = UIImage(systemName: "star")
             cell.favoriteImage.alpha = 0.5
         }
-
+        
         return cell
     }
     

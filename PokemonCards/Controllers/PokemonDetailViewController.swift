@@ -12,13 +12,16 @@ class PokemonDetailViewController: UIViewController {
     
     var pokemon: Pokemon?
     var cardImage: UIImage?
+    var favoriteCards: [String: Bool] = [:]
+    let userDefaults = UserDefaults.standard
     
     @IBOutlet weak var pokemonCardImage: UIImageView!
     @IBOutlet weak var markAsFavoriteButton: UIButton!
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        loadUserDefaults()
         
         if let pokemon = pokemon {
             title = pokemon.name
@@ -28,11 +31,7 @@ class PokemonDetailViewController: UIViewController {
                 self.cardImage = image
             }
             
-            if Favorite.cards[pokemon.id] == false {
-                markAsFavoriteButton.setTitle("Mark as favorite", for: .normal)
-            } else {
-                markAsFavoriteButton.setTitle("Unmark as favorite", for: .normal)
-            }
+            updateFavoriteButtonTitle(id: pokemon.id)
             
         } else {
             print("Pokemon image is nil")
@@ -50,12 +49,29 @@ class PokemonDetailViewController: UIViewController {
     
     @IBAction func markAsFavoriteButtonTapped(_ sender: UIButton) {
         guard let pokemon = pokemon else { return }
-        if Favorite.cards[pokemon.id] == false {
-            Favorite.cards[pokemon.id] = true
-            markAsFavoriteButton.setTitle("Unmark as favorite", for: .normal)
+        print("Favorite tapped")
+        if favoriteCards[pokemon.id] == false {
+            favoriteCards[pokemon.id] = true
         } else {
-            Favorite.cards[pokemon.id] = false
+            favoriteCards[pokemon.id] = false
+        }
+        userDefaults.set(favoriteCards, forKey: "favoriteCards")
+        updateFavoriteButtonTitle(id: pokemon.id)
+    }
+    
+    //MARK: Functions
+    
+    func loadUserDefaults() {
+        if let dict = userDefaults.dictionary(forKey: "favoriteCards") as? [String: Bool] {
+            favoriteCards = dict
+        }
+    }
+    
+    func updateFavoriteButtonTitle(id: String) {
+        if favoriteCards[id] == false {
             markAsFavoriteButton.setTitle("Mark as favorite", for: .normal)
+        } else {
+            markAsFavoriteButton.setTitle("Unmark as favorite", for: .normal)
         }
     }
     
