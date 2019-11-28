@@ -49,7 +49,6 @@ class PokemonDetailViewController: UIViewController {
     
     @IBAction func markAsFavoriteButtonTapped(_ sender: UIButton) {
         guard let pokemon = pokemon else { return }
-        print("Favorite tapped")
         if favoriteCards[pokemon.id] == false {
             favoriteCards[pokemon.id] = true
         } else {
